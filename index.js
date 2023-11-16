@@ -3,7 +3,7 @@ const exphbs = require("express-handlebars")
 
 const app = express()
 
-app.engine('handlebars', express.engine())
+app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
 app.get('/', (requisicao, resposta) => {
