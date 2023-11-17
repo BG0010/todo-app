@@ -13,4 +13,22 @@
 
 header {
     background-image: var(--bg-header-mobile);
+    height: 12.5rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    padding: 3em 1.75em 0;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5em;
+}
+
+header div h1 {
+    color: #fff;
+    text-transform: uppercase;
 }
