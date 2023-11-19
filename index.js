@@ -17,6 +17,24 @@ app.use(express.json())
 
 //rotas
 
+app.post('/descompletar', (requisicao, resposta) => {
+    const id = requisicao.body.id
+
+    const sql = `
+        UPDATE tarefas
+        SET completa = '0'
+        WHERE id = ${id}
+    `
+
+    conexao.query(sql, (erro) => {
+        if (erro) {
+            return console.log(erro)
+        }
+
+        resposta.redirect('/')
+    })
+})
+
 app.post('/completar', (requisicao, resposta) => {
     const id = requisicao.body.id
 
@@ -34,6 +52,8 @@ app.post('/completar', (requisicao, resposta) => {
         resposta.redirect('/')
     })
 })
+
+
 
 app.post('/criar', (requisicao, resposta) => {
     const descricao = requisicao.body.descricao
@@ -69,8 +89,14 @@ app.get('/', (requisicao, resposta) => {
                 completa: dado.completa === 0 ? false : true 
             }
         })
+
+        const tarefasAtivas = tarefas.filter((tarefa) => {
+            return tarefa.completa === false && tarefa
+        })
+
+        const quantidadeTarefasAtivas = tarefasAtivas.length
         
-        resposta.render('home', { tarefas })
+        resposta.render('home', { tarefas, quantidadeTarefasAtivas })
     })
 
     

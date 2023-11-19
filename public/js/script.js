@@ -1,15 +1,31 @@
+const { application } = require("express")
+
 function completarTarefa(id) {
     //fetch - é uma maneira de se comunicar com API
     fetch("http://localhost:3000/completar", {
         method: "POST",
         headers: {
-            'Content-type': 'application/json'  //enviar uma informação em json - informação estruturada
+            'Content-Type': 'application/json'  //enviar uma informação em json - informação estruturada
         },
         body: JSON.stringify({ id })
     })
 
     window.location.reload() //atualiza a página após concluir uma tarefa
 }
+
+function descompletarTarefa(id) {
+    fetch("http://localhost:3000/descompletar", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id })
+    })
+
+    window.location.reload()
+}
+
+
 
 function alterarTema() {
     const tema = localStorage.getItem("tema")
