@@ -1,3 +1,16 @@
+function completarTarefa(id) {
+    //fetch - é uma maneira de se comunicar com API
+    fetch("http://localhost:3000/completar", {
+        method: "POST",
+        headers: {
+            'Content-type': 'application/json'  //enviar uma informação em json - informação estruturada
+        },
+        body: JSON.stringify({ id })
+    })
+
+    window.location.reload() //atualiza a página após concluir uma tarefa
+}
+
 function alterarTema() {
     const tema = localStorage.getItem("tema")
     const body = document.querySelector("body")
