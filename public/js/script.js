@@ -1,5 +1,3 @@
-const { application } = require("express")
-
 function completarTarefa(id) {
     //fetch - é uma maneira de se comunicar com API
     fetch("http://localhost:3000/completar", {
@@ -52,6 +50,7 @@ function alterarTema() {
         return
     }
 
+
     localStorage.setItem("tema", "dark")
     body.classList.add("dark")
 }
@@ -61,16 +60,17 @@ function verificarTema() {
     const body = document.querySelector("body")
     const button = document.querySelector(".tema-button")
 
-
-    
-    if (tema) {
-        if (tema === "dark")
-            body.classList.add("dark")
-            button.innerHTML = `<img src="/imagens/sun-icon.png" alt="icone do sol">`
+    if (tema === "dark") {
+        button.innerHTML = `<img src="/imagens/sun-icon.png" alt="icone do sol">`
+        body.classList.remove("Light")
+        body.classList.add("dark")
     } else {
-        body.classList.add("Light")
         button.innerHTML = `<img src="/imagens/moon-icon.png" alt="icone de lua">`
+        body.classList.remove("dark")
+        body.classList.add("Light")
     }
-}
 
+}
 verificarTema()
+
+
